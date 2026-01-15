@@ -47,10 +47,10 @@ func exampleBasicError() {
 	fmt.Println("Example: Basic Error Handling")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	result1, err1 := divide(10, 2)
 	result2, err2 := divide(10, 0)
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  result1, err1 := divide(10, 2)")
 	fmt.Println("  result2, err2 := divide(10, 0)")
@@ -73,16 +73,16 @@ func exampleErrorWrapping() {
 	fmt.Println("Example: Error Wrapping")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	process := func() error {
-		if err := divide(10, 0); err != nil {
+		if _, err := divide(10, 0); err != nil {
 			return fmt.Errorf("failed to process division: %w", err)
 		}
 		return nil
 	}
-	
+
 	err := process()
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  if err := divide(10, 0); err != nil {")
 	fmt.Println("      return fmt.Errorf(\"failed: %w\", err)")
@@ -97,22 +97,26 @@ func exampleErrorWrapping() {
 
 var ErrNotFound = errors.New("not found")
 
+type MyError struct {
+	Code    int
+	Message string
+}
+
+func (e *MyError) Error() string {
+	return fmt.Sprintf("code %d: %s", e.Code, e.Message)
+}
+
 func exampleCustomErrors() {
 	fmt.Println("Example: Custom Errors")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
-	type MyError struct {
-		Code    int
-		Message string
-	}
-	
+
 	myError := func(code int, msg string) *MyError {
 		return &MyError{Code: code, Message: msg}
 	}
-	
+
 	var err error = myError(404, "Resource not found")
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  type MyError struct {")
 	fmt.Println("      Code    int")
@@ -121,7 +125,7 @@ func exampleCustomErrors() {
 	fmt.Println()
 	fmt.Println("Output:")
 	fmt.Printf("  Error: %v\n", err)
-	
+
 	if myErr, ok := err.(*MyError); ok {
 		fmt.Printf("  Code: %d, Message: %s\n", myErr.Code, myErr.Message)
 	}
@@ -132,9 +136,9 @@ func exampleErrorIs() {
 	fmt.Println("Example: errors.Is")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	err := ErrNotFound
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  var ErrNotFound = errors.New(\"not found\")")
 	fmt.Println("  errors.Is(err, ErrNotFound)")

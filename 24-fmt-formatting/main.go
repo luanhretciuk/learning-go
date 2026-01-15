@@ -33,12 +33,12 @@ func exampleFormatVerbs() {
 	fmt.Println("Example: Format Verbs")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	i := 42
 	f := 3.14
 	s := "hello"
 	b := true
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  fmt.Printf(\"%d %f %s %t\", i, f, s, b)")
 	fmt.Println()
@@ -51,9 +51,9 @@ func exampleSprintf() {
 	fmt.Println("Example: Sprintf")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	s := fmt.Sprintf("Value: %d, Name: %s", 42, "Go")
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  s := fmt.Sprintf(\"Value: %d, Name: %s\", 42, \"Go\")")
 	fmt.Println()
@@ -74,9 +74,9 @@ func exampleCustomFormatting() {
 	fmt.Println("Example: Custom Formatting (Stringer)")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	p := Point{3, 4}
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  type Point struct { X, Y int }")
 	fmt.Println("  func (p Point) String() string { ... }")

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"net"
 )
 
 func printTheory() {
@@ -27,7 +26,7 @@ func exampleTCP() {
 	fmt.Println("Example: TCP Connection")
 	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 	fmt.Println()
-	
+
 	fmt.Println("Code:")
 	fmt.Println("  ln, _ := net.Listen(\"tcp\", \":8080\")")
 	fmt.Println("  conn, _ := ln.Accept()")
